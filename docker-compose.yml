@@ -1,0 +1,29 @@
+services:
+  mysql:
+    container_name: mysql-book
+    image: mysql
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0966420942
+      GDATA: /var/lib/mysql/data
+      MYSQL_DB: book_social_network
+    volumes:
+      - mysql: /data/mysql
+    ports:
+      - 3308:3306
+    networks:
+      - spring-demo
+    restart: unless-stopped
+  mail-dev:
+    container_name: mail-dev-book
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  spring-demo:
+    driver: bridge
+volumes:
+  mysql:
+    driver: local
