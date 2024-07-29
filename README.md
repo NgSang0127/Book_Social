@@ -8,7 +8,6 @@
 - OpenAPI and Swagger UI Documentation
 - Docker
 - GitHub Actions
-- Keycloak
 
 #### Class diagram
 ![Class diagram](screenshots/class-diagram.png)
