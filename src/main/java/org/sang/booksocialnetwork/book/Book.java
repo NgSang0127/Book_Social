@@ -1,16 +1,10 @@
 package org.sang.booksocialnetwork.book;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
-import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.sang.booksocialnetwork.common.BaseEntity;
+import org.sang.booksocialnetwork.feedback.Feedback;
 import org.sang.booksocialnetwork.history.BookTransactionHistory;
 import org.sang.booksocialnetwork.user.User;
 

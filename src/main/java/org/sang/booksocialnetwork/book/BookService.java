@@ -225,9 +225,9 @@ public class BookService {
 	}
 
 	public void uploadBookCoverPicture(MultipartFile file, Authentication connectedUser, Integer bookId) {
-		Book book=findBookById(bookId);
+		Book book = findBookById(bookId);
 		User user = ((User) connectedUser.getPrincipal());
-		var bookCover=fileStorageService.saveFile(file,user.getId());
+		var bookCover = fileStorageService.saveFile(file, user.getId());
 		book.setBookCover(bookCover);
 		bookRepository.save(book);
 	}

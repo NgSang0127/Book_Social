@@ -135,15 +135,18 @@ public class BookController {
 		return ResponseEntity.ok(bookService.returnApproveBorrowedBook(bookId,connectedUser));
 	}
 
+	//consumes: Đây là thuộc tính của chú thích @PostMapping mà bạn dùng để chỉ định các loại MIME (Media Type) mà phương thức sẽ xử lý.
 	@PostMapping(value = "/cover/{book-id}",consumes = "multipart/form-data")
 	public ResponseEntity<?> uploadBookCoverPicture(
 			@PathVariable("book-id") Integer bookId,
 			@Parameter()
-			@RequestPart("file") MultipartFile file,
+			@RequestPart("file") MultipartFile file,//@RequestPart giúp bạn trích xuất các phần cụ thể từ yêu cầu multipart/form-data
 			Authentication connectedUser
 	){
-		bookService.uploadBookCoverPicture(file,connectedUser,bookId'')
+		bookService.uploadBookCoverPicture(file,connectedUser,bookId);
 		return ResponseEntity.accepted().build();
 	}
+
+
 
 }
