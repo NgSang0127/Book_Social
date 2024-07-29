@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -34,9 +35,9 @@ public class Book  extends BaseEntity {
 
 	private String isbn;
 
-	private String synopsis;
+	private String synopsis;//bản tóm tắt nội dung sơ lược cuốn sách
 
-	private String bookCover;
+	private String bookCover;//directory chua ảnh
 
 	private boolean archived;
 
@@ -51,5 +52,19 @@ public class Book  extends BaseEntity {
 
 	@OneToMany(mappedBy = "book")
 	private List<BookTransactionHistory> histories;
+
+	@Transient
+	public double getRate(){
+		if(feedbacks == null || feedbacks.isEmpty()){
+			return 0.0;
+		}
+		var rate=this.feedbacks.stream()
+				.mapToDouble(Feedback::getNote)
+				.average()
+				.orElse(0.0);
+		//rounded ratings
+		double roundedRate= (double) Math.round(rate * 10) /10;//rounded 1 chữ số sau dấu phẩy
+		return roundedRate;
+	}
 
 }

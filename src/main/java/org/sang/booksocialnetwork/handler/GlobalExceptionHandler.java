@@ -3,6 +3,7 @@ package org.sang.booksocialnetwork.handler;
 import jakarta.mail.MessagingException;
 import java.util.HashSet;
 import java.util.Set;
+import org.sang.booksocialnetwork.exception.OperationNotPermittedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -108,6 +109,17 @@ public class GlobalExceptionHandler {
 				.body(
 						ExceptionResponse.builder()
 								.businessErrorDescription("Internal error, contact the admin")
+								.error(exp.getMessage())
+								.build()
+				);
+
+	}
+
+	@ExceptionHandler(OperationNotPermittedException.class)
+	public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp){
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body(
+						ExceptionResponse.builder()
 								.error(exp.getMessage())
 								.build()
 				);
