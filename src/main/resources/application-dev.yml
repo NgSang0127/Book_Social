@@ -36,6 +36,8 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:3000/activate-account
-
+  file:
+    upload:
+      photos-output-path: ./upload
 server:
   port: 8080
